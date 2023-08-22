@@ -1,0 +1,68 @@
+{% extends 'layout/master.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="category">
+
+   <div class="row">
+      
+
+     
+           <div class="col col-md-4">
+           {% if page == 'photo_create' %}
+            <table class="table table-bordered shadow">
+            <thead>
+                <tr>
+                    <th>
+                        <h1>Create Photo</h1>
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.category|as_crispy_field }}
+                            {{ form.title|as_crispy_field }}
+                            {{ form.country|as_crispy_field }}
+                            {{ form.image|as_crispy_field }}
+                            
+                            
+                            <button type="submit" class="btn btn-sm text-white" style="background-color: #014be1;">Create</button>
+                            <button type="reset" class="btn btn-sm text-white" style="background-color: #e10019;" onclick="history.back()">Cancel</button>
+                        </form>
+                    </th>
+                </tr>
+            </thead>
+            
+
+            </table>
+
+            {% else %}
+            <table class="table table-bordered shadow">
+               <thead>
+                   <tr>
+                       <th>
+                           <h1>Change Photo</h1>
+                           <form action="" method="POST" enctype="multipart/form-data">
+                               {% csrf_token %}
+                               {{ form.category|as_crispy_field }}
+                               {{ form.title|as_crispy_field }}
+                               {{ form.country|as_crispy_field }}
+                               {{ form.image|as_crispy_field }}
+                               
+                               
+                               <button type="submit" class="btn btn-sm text-white" style="background-color: #014be1;">Change</button>
+                               <button type="reset" class="btn btn-sm text-white" style="background-color: #e10019;" onclick="history.back()">Cancel</button>
+                           </form>
+                       </th>
+                   </tr>
+               </thead>
+               
+
+           </table>
+           {% endif %}
+               
+           </div>
+           <!-- end create category -->
+
+         
+       
+   </div>
+</div>
+{% endblock %}

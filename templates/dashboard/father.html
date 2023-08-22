@@ -1,0 +1,136 @@
+{% extends 'layout/master.html' %} 
+{% load crispy_forms_tags %} 
+{% block content %}
+
+ 
+
+
+   
+          <!-- student -->
+         
+        
+          
+              
+                         <div class="student-form">
+                              
+                              <form action="" method="POST" class="mt-5" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                
+                                <!-- student  -->
+                                <table class="table table-bordered shadow-lg">
+                                     <thead>
+                                        <h3 class="text-center text-decoration-underline alert alert-dark">ကျောင်းသား ကိုယ်ရီး အကျဥ်း</h3>
+                                        <tr>
+                                             <th>
+                                                  <div class="row">
+                                  
+                                                       <div class="col col-sm-6">{{ form.name|as_crispy_field}}</div>
+                                               
+                                                      <div class="col col-sm-6">{{ form.age|as_crispy_field}}</div>
+                                               
+                                                      <div class="col col-sm-6">{{ form.address|as_crispy_field}}</div>
+                                               
+                                                      <div class="col col-sm-6">{{ form.contact|as_crispy_field}}</div>
+                                               
+                                                      <div class="col col-sm-6">{{ form.current_class|as_crispy_field}}</div>
+                                               
+                                                      <div class="col col-sm-6">{{ form.major|as_crispy_field}}</div>
+                                               
+                                                      <div class="col col-sm-6">{{ form.image|as_crispy_field}}</div>
+                                                    </div>
+                                                    <button type="reset" class="btn btn-sm text-white" style="background-color: #e10019" onclick="history.back()">မသိမ်းပါ</button>
+                                             </th>
+                                        </tr>
+                                   </thead>
+                                </table>
+                                <!-- end student -->
+                              
+                           
+                                <!-- father personal -->
+                                <div class="father  mt-5">
+                                   <table class="table table-bordered shadow-lg">
+                                        <thead>
+                                             <h3 class="text-center text-decoration-underline alert alert-dark">အဖ ကိုယ်ရီး အကျဥ်း</h3>
+     
+                                           <tr>
+                                                <th>
+                                                  <div class="row">
+                                                       <div class="col col-sm-3">{{ form.f_name|as_crispy_field }}</div>
+                                                 
+                                                       <div class="col col-sm-3">{{ form.f_age|as_crispy_field }}</div>
+                                                 
+                                                       <div class="col col-sm-3">{{ form.f_careers|as_crispy_field }}</div>
+                                                 
+                                                       <div class="col col-sm-3">{{ form.f_address|as_crispy_field }}</div>
+                                                 
+                                                       <div class="col col-sm-3">{{ form.f_contact|as_crispy_field }}</div>
+                                                 
+                                                       <div class="col col-sm-3">{{ form.f_image|as_crispy_field }}</div>
+                                                  </div>
+                                                     <button type="reset" class="btn btn-sm text-white" style="background-color: #e10019" onclick="history.back()">မသိမ်းပါ</button>
+                                                </th>
+                                           </tr>
+                                      </thead>
+                                   </table>
+                                 
+                                </div>
+                               
+                                <!-- end father personal -->
+
+                                <!-- mother personal -->
+                                <div class="mother  mt-5">
+                                   <table class="table table-bordered shadow-lg">
+                                        <thead>
+                                             <h3 class="text-center text-decoration-underline alert alert-dark">အမိ ကိုယ်ရီး အကျဥ်း</h3>
+     
+                                           <tr>
+                                                <th>
+                                                  <div class="row">
+                                                       <div class="col col-sm-3">{{ form.m_name|as_crispy_field }}</div>
+                                                 
+                                                       <div class="col col-sm-3">{{ form.m_age|as_crispy_field }}</div>
+                                                 
+                                                       <div class="col col-sm-3">{{ form.m_careers|as_crispy_field }}</div>
+                                                 
+                                                       <div class="col col-sm-3">{{ form.m_address|as_crispy_field }}</div>
+                                                 
+                                                       <div class="col col-sm-3">{{ form.m_contact|as_crispy_field }}</div>
+                                                 
+                                                       <div class="col col-sm-3">{{ form.m_image|as_crispy_field }}</div>
+                                                  </div>
+                                                     <button type="reset" class="btn btn-sm text-white" style="background-color: #e10019" onclick="history.back()">မသိမ်းပါ</button>
+                                                </th>
+                                           </tr>
+                                      </thead>
+                                   </table>
+                                 
+                                </div>
+                                <!-- end mother personal -->
+
+                                <button type="submit" class="btn btn-sm text-white mt-5" style="background-color: #0d3f17"> သိမ်းဆည်းရန်</button>
+                                <button type="reset" class="btn btn-sm text-white mt-5" style="background-color: #e10019" onclick="history.back()">မသိမ်းပါ</button>
+                                
+                              </form>
+                         </div>
+                    
+         
+        
+          
+         <!-- end student -->
+         
+        
+          
+
+  
+
+
+{% endblock %}     
+         
+              
+               
+          
+
+
+
+
+

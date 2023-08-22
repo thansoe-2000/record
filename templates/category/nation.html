@@ -1,0 +1,95 @@
+{% extends 'layout/master.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+   <div class="col col-md-8">
+      <div class="card shadow">
+         <div class="text-dark alert alert-info">
+
+            <h4 class="text-center fs-4 fw-bold">လူမျိုး ဇယား</h4>
+            
+         </div>
+         <div class="card-body">
+           
+            <table class="table">
+               <thead>
+                  <tr>
+                     <th>Id</th>
+                     <th>Name</th>
+                     <th>Actions</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {% for nation in nations %}
+                  <tr>
+                     <td>{{ forloop.counter }}</td>
+                     <td>{{ nation.name }}</td>
+                     <td>
+                        <a href="{% url 'edit_nation' nation.id  %}" class="btn btn-sm text-white" style="background-color: #014be1;">ပြုပြင်ရန်</a>
+                        <a href="{% url 'remove_nation' nation.id %}" class="btn btn-sm text-white" style="background-color: #e10019;">ဖျက်သိမ်းရန်</a>
+                        
+                     </td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+
+
+         </div>
+      </div>
+   </div>
+   
+   <!-- for create nation-->
+   {% if add == "add_nation" %}
+   <div class="col col-md-4">
+      <div class="card shadow">
+         <div class="text-dark alert alert-info">
+
+            လူမျိုး အသစ်ပေါင်းထည့်ရန်
+         </div>
+         <div class="card-body">
+            <form action="" method="POST">
+               {% csrf_token %}
+               {{form.name|as_crispy_field}}
+               
+               
+                  <button type="submit" class="btn btn-sm text-white" style="background-color: #014be1;">သိမ်းဆည်းရန်</button>
+                  <button type="reset" class="btn btn-sm text-white" style="background-color: #e10019;">မသိမ်းပါ</button>
+            </form>
+         </div>
+      </div>
+   </div>
+   
+   <!-- end create nation -->
+
+   <!-- edit nation -->
+   {% else %}
+   <div class="col col-md-4">
+      <div class="card shadow">
+         <div class="text-dark alert alert-info">
+
+         "{{ nation.name }}" ကို ပြုပြင်ရန်
+         </div>
+         <div class="card-body">
+            <form action="" method="POST">
+               {% csrf_token %}
+               {{form.name|as_crispy_field }} 
+               
+               
+                  <button type="submit" class="btn btn-sm text-white" style="background-color: #014be1;">ပြုပြင်ရန်</button>
+                  <button type="reset" class="btn btn-sm text-white" onclick="history.back()" style="background-color: #e10019;">မပြုပြင်ပါ</button>
+            </form>
+         </div>
+      </div>
+   </div>
+   <!-- end edit nation -->
+
+
+   
+   {% endif %}
+
+
+
+</div>
+
+{% endblock content %}

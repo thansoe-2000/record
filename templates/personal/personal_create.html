@@ -1,0 +1,117 @@
+{% extends 'layout/master.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<form action="" method="POST" enctype="multipart/form-data">
+    <h2 class="text-center text-dark alert alert-info" >ကိုယ်ရီး အချက်အလက်ဖြည့်ရန်</h2>
+    {% csrf_token %}
+    <div class="row">
+        <div class="col col-md-3">
+            {{form.name|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.rank|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.appointment|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.ser_number|as_crispy_field}}
+        </div>
+
+
+        <div class="col col-md-3">
+            {{form.image|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.department|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.gender|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.birthday|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.religion|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.nation|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.address|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.father|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.mother|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.married|as_crispy_field}}
+        </div>
+
+
+
+
+        <div class="col col-md-3">
+            {{form.blood|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.health|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.height|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.education|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.join_date|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.batch_no|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.trained_place|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.trained_type|as_crispy_field}}
+        </div>
+
+        <div class="col col-md-3">
+            {{form.long_time|as_crispy_field}}
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-sm text-white" style="background-color: #014be1;">သိမ်းဆည်းရန်</button>
+    <button type="reset" class="btn btn-sm text-white" style="background-color: #e10019;"
+        onclick="history.back()">မသိမ်းပါ</button>
+</form>
+
+
+
+
+{% endblock %}

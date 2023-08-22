@@ -1,0 +1,34 @@
+{% extends 'layout/master.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="image">
+   <h1>Photo Alubm    <a href="{% url 'photo_create' %}" class="btn btn-sm btn-info float-end">Create photo</a></h1>
+   <div class="photo-alubm">
+      <div class="row">
+         {% for photo in photos %}
+         <div class="col col-sm-12 col-md-12 col-lg-4">
+            <div class="card mt-3">
+               <div class="card-header alert alert-info">
+                  <h4>Category:  "{{ photo.category }}"</h4>
+               </div>
+               <div class="card-body" >
+                  <img src="{{ photo.image.url }}" alt="" width="100%" height="300px" style="object-fit:cover">
+               </div>
+               <div class="card-footer alert alert-info">
+                  <p>{{ photo.title }}</p>
+                  <p>{{ photo.country }}</p>
+                  
+                  <a href="{% url 'photo_change' photo.id %}" class="btn btn-sm btn-success">Change Photo</a>
+               </div>
+               
+            </div>
+         </div>
+         {% endfor %}
+      </div>
+        
+   </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'layout/master.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h3 class="text-decoration-underline font-weight-bold alert alert-info">ရက္ခိုင့်တပ်တော်မှ စစ်သည်/စစ်မယ်များ၏ ကိုယ်ရီးအချက်အလက်များ</h3>
+ 
+<table class="table table-hover border shadow-lg mt-5">
+    <thead class="mt-3">
+        <tr>
+            <th class="fs-5">စဥ်</th>
+            <th class="fs-5">နာမေ</th>
+            <th class="fs-5">ဌာန</th>
+           
+            <th class="fs-5">ကိုယ်ပိုင် နံပါတ်</th>
+            <th class="fs-5">အသက်</th>
+            <th class="fs-5">သင်တန်း အပါတ်စဥ်</th>
+            <th  class="fs-5">ဓါတ်ပုံ</th>
+            <th class="fs-5">လိင်</th>
+            <th class="fs-5">လုပ်ဆောင်ချက်များ</th>
+
+            
+           
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for personal in personal_search %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ personal.name }}</td>
+            <td>{{ personal.department }}</td>
+
+            <td>{{ personal.ser_number }}</td>
+            <td>{{ personal.birthdayCount }}</td>
+            <td>အပါတ်စဥ်  ({{ personal.batch_no }})</td>
+           
+            <td>
+                <img src="{{ personal.image.url}}" alt="" width="50px" height="50px">
+            </td>
+            <td>{{ personal.gender }}</td>
+            <td>
+                 <a href="{% url 'personal_change' personal.id %}" class="btn btn-sm btn-facebook">ပြုပြင်ရန်</a>
+                 <a href="{% url 'personal_detail' personal.id %}" class="btn btn-sm btn-github">ကြည့်ရန်</a>
+                 <a href="{% url 'personal_crime_create' personal.id %}" class="btn btn-sm btn-success">ပြစ်မှု</a>
+                 <a href="{% url 'personal_serviced_create' personal.id %}" class="btn btn-sm btn-info">ဌာန</a>
+                 <a href="#" class="btn btn-sm btn-danger">ဖျက်ရန်</a>
+
+
+                 
+
+            </td>
+           
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+<!-- paginations start -->
+{{ personals.num_pages }}
+<nav aria-label="Page navigation">
+   {% if personals.has_other_pages %}
+   <ul class="pagination    ">
+      {% if personals.has_previous %}
+      <li class="page-item" aria-current="page">
+         <a class="page-link" href="?page={{ personals.previous_page_number }}">&laquo;</a>
+      </li>
+      {% endif %}
+
+      {% for i in personals.paginator.page_range %}
+      {% if personals.paginator == i %}
+      <li class="page-item">
+         <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+         <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+
+
+
+      {% if personals.has_next %}
+      <li class="page-item">
+         <a class="page-link" href="?page={{ personals.next_page_number }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+         </a>
+      </li>
+      {% endif %}
+
+   </ul>
+   {% endif %}
+
+</nav>
+<!-- end paginations -->
+
+
+
+<!-- ကိုယ်ရီး အချက်အလက် ဖြည့်သွင်းရန်  -->
+<a href="{% url 'personal_create' %}" class="btn btn-sm mt-5 text-white" style="background-color: #014be1;">ကိုယ်ရီးအချက်အလက်ဖြည့်သွင်းရန်</a>
+<!-- ကိုယ်ရီး အချက်အလက် ဖြည့်သွင်းရန်  -->
+
+{% endblock %}
+
+
+            
+           
+           
+            
+        
+
+
+
+

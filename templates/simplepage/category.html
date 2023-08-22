@@ -1,0 +1,94 @@
+{% extends 'layout/master.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="category">
+
+    <div class="row">
+        <div class="col col-md-8">
+            <h1>Category</h1>
+            <table class="table table-bordered shadow table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>Category Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for category in categories %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ category.user }}</td>
+                            <td>{{ category.name }}</td>
+                            <td>
+                               <a href="{% url 'category_change' category.id %}" class="btn btn-sm btn-info">Change</a>
+                                <button class="btn btn-sm btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+        <!-- create category -->
+        {% if page == 'category_create'%}
+            <div class="col col-md-4">
+                <table class="table table-bordered shadow">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h1>Create category</h1>
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    {{ form.user|as_crispy_field }}
+                                    {{ form.name|as_crispy_field }}
+                                    
+                                    
+                                    <button type="submit" class="btn btn-sm text-white" style="background-color: #014be1;">Create</button>
+                                    <button type="reset" class="btn btn-sm text-white" style="background-color: #e10019;">Cancel</button>
+                                </form>
+                            </th>
+                        </tr>
+                    </thead>
+                    
+
+                </table>
+            </div>
+            <!-- end create category -->
+
+            <!-- change -->
+            {% else %}
+            <div class="col col-md-4">
+                <table class="table table-bordered shadow">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h1>Change category</h1>
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    {{ form.user|as_crispy_field }}
+                                    {{ form.name|as_crispy_field }}
+                                    
+                                    
+                                    <button type="submit" class="btn btn-sm text-white" style="background-color: #014be1;">Change</button>
+                                    <button type="reset" class="btn btn-sm text-white" style="background-color: #e10019;" onclick="history.back()">Cancel</button>
+                                </form>
+                            </th>
+                        </tr>
+                    </thead>
+                    
+
+                </table>
+            </div>
+            <!-- end change -->
+            {% endif %}
+        
+    </div>
+</div>
+
+
+
+{% endblock %}

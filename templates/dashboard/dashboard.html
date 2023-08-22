@@ -1,0 +1,68 @@
+{% extends 'layout/master.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="student">
+     <h1>Dashboard</h1>
+     
+     <h1>A student personal</h1>
+     <table class="table table-bordered table-hover">
+          <thead>
+               <tr>
+                    <th>စဥ်</th>
+                    <th>နာမေ</th>
+                    <th>အသက်</th>
+                    <th>နီရပ် လိပ်စာ</th>
+                    <th>ဆက်သွယ်ရန် ဖုန်း၊ အီးမေးလ်</th>
+                    <th>လက်ဟိ အတန်း</th>
+                    <th>အထူးပြုဘာသာရပ်</th>
+                    <th>ဓါတ်ပုံ</th>
+                    <th>လုပ်ဆောင်ချက်များ</th>
+                    
+               </tr>
+          </thead>
+          <tbody>
+               
+                {% for student in  students %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.ageCount}}</td>
+                    <td>{{ student.address }}</td>
+                    <td>{{ student.contact }}</td>
+                    <td>{{ student.current_class }}</td>
+                    <td>{{ student.major }}</td>
+                   <td>
+                         <img src="{{ student.image.url }}" alt="">
+                   </td>
+                    <td>
+                         <a href="{% url 'detail_student' student.id %}" class="btn btn-sm btn-success">ကြည့်ရန်</a>
+                         <a href="{% url 'student_change' student.id %}" class="btn btn-sm btn-warning">ပြုပြင်ရန်</a>
+                         <a href="#" class="btn btn-sm btn-danger">ဖျက်ရန်</a>
+                    </td>
+                </tr>
+                {% endfor %}    
+                   
+                      
+                         
+                    
+             
+              
+              
+          </tbody>
+
+     </table>
+
+     <a href="{% url 'create_student' %}" class="btn btn-sm btn-success mt-3">Create new student</a>
+    
+</div>
+{% endblock %}
+             
+
+
+
+
+
+
+
+

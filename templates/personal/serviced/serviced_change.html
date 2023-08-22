@@ -1,0 +1,44 @@
+{% extends 'layout/master.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card shadow" >
+    <div class="card-header text-center text-dark alert alert-info">
+        <h3>{{ personal.name }}တာဝန်ထမ်းဆောင်မှု မှတ်တမ်းကို ပြုပြင်ရန်</h3>
+    </div>
+    <div class="card-body">
+        <form action="" method="POST">
+    
+            {% csrf_token %}
+            <div class="row">
+               
+                <div class="col col-md-4">
+                    {{form.name|as_crispy_field}}
+                </div>
+                
+                <div class="col col-md-4">
+                    {{form.serviced|as_crispy_field}}
+                </div>
+        
+                <div class="col col-md-4">
+                    {{form.start_date|as_crispy_field}}
+                </div>
+        
+                <div class="col col-md-4">
+                    {{form.end_date|as_crispy_field}}
+                </div>
+        
+                <div class="col col-md-4">
+                    {{form.long_time|as_crispy_field}}
+                </div>
+        
+                
+        
+            </div>
+            <button type="submit" class="btn btn-sm text-white" style="background-color: #014be1;">ပြုပြင်မည်</button>
+            <button type="reset" class="btn btn-sm text-white" style="background-color: #e10019;"
+                onclick="history.back()">မပြုပြင်ပါ</button>
+        </form>
+    </div>
+</div>
+    
+{% endblock %}

@@ -1,0 +1,329 @@
+{% extends 'layout/master.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1>Tables</h1>
+
+<div class="row">
+
+<div class="col col-md-12">
+<div class="card shadow">
+   <div class="card-body">
+      <h4 class="card-title" style="font-weight: bolder; text-decoration: underline;">စစ်သည်များ၏ ကိုယ်ရီးအကျဥ်း</h4>
+      <table class="table table-hover">
+         <thead>
+            <tr>
+               <th>စဥ်</th>
+               <th>နာမေ</th>
+               <th>ဌာန</th>
+               <th>ကိုယ်ပိုင်နံပါတ်</th>
+               <th>အသက်</th>
+               <th>သင်တန်း အပါတ်စဥ်</th>
+               <th>ဓါတ်ပုံ</th>
+               <th>လိင်</th>
+               
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for personal in personals %}
+            <tr>
+               <td>{{ forloop.counter }}</td>
+               <td>{{ personal.name }}</td>
+               <td>{{ personal.department }}</td>
+               <td>{{ personal.ser_number }}</td>
+               <td>{{ personal.birthdayCount }}</td>
+               <td>{{ personal.batch_no }}</td>
+               <td>
+                  <img src="{{ personal.image.url}}" alt="">
+               </td>
+               <td>{{ personal.gender }}</td>
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+      <a href="{% url 'personal_page' %}" class="btn btn-sm mt-3 text-white float-end"
+               style="background-color: #014be1;">View More</a>
+   </div>
+
+</div>
+</div>
+
+ <!-- appointment -->
+ <div class="col col-md-4 mt-2">
+   <div class="card shadow">
+      <div class="card-body">
+         <h4 class="card-title">တာဝန်</h4>
+         <p class="card-description"><a href="{% url 'appointment' %}">View More</a> <code>.table</code>
+         </p>
+         <table class="table table-hover">
+            <thead>
+               <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+
+               </tr>
+            </thead>
+            <tbody>
+               {% for appointment in appointments %}
+               <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ appointment.name }}</td>
+
+               </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+         <a href="{% url 'appointment' %}" class="btn btn-sm mt-3 text-white float-end"
+            style="background-color: #014be1;">View More</a>
+
+      </div>
+   </div>
+</div>
+   
+   <!-- department -->
+   <div class="col col-md-4 mt-2">
+      <div class="card shadow">
+         <div class="card-body">
+            <h4 class="card-title">တာဝန် ထမ်းဆောင်နိန်ရေ ဌာန</h4>
+            <p class="card-description"><a href="{% url 'department' %}">View More</a> <code>.table</code>
+            </p>
+            <table class="table table-hover">
+               <thead>
+                  <tr>
+                     <th>Id</th>
+                     <th>Name</th>
+                  </tr>
+               </thead>
+
+               <tbody>
+                  {% for department in departments %}
+                  <tr>
+                     <td>{{ forloop.counter }}</td>
+                     <td>{{ department.name }}</td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+            <a href="{% url 'department' %}" class="btn btn-sm mt-3 text-white float-end"
+               style="background-color: #014be1;">View More</a>
+
+         </div>
+      </div>
+   </div>
+
+     <!-- nation -->
+      <div class="col col-md-4 mt-2">
+      <div class="card shadow">
+         <div class="card-body">
+            <h4 class="card-title">လူမျိုး ဇယား</h4>
+            <p class="card-description"> <a href="{% url 'nation' %}"> View more</a> <code>.table</code>
+            </p>
+            <table class="table table-hover">
+               <thead>
+                  <tr>
+                     <th>Id</th>
+                     <th>Name</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {% for nation in nations %}
+                  <tr>
+                     <td>{{ forloop.counter }}</td>
+                     <td>{{ nation.name }}</td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+            <a href="{% url 'nation' %}" class="btn btn-sm mt-3 text-white float-end"
+               style="background-color: #014be1;">View More</a>
+
+         </div>
+      </div>
+      </div>
+
+
+      <!-- type -->
+      <div class="col col-md-4 mt-2">
+         <div class="card shadow">
+            <div class="card-body">
+               <h4 class="card-title">သင်တန်း အမျိုးအစား</h4>
+               <p class="card-description"><a href="{% url 'training_type' %}">View More</a>
+   
+               <table class="table table-hover">
+                  <thead>
+                     <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+   
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {% for type in types %}
+                     <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ type.name }}</td>
+   
+                     </tr>
+                     {% endfor %}
+                  </tbody>
+               </table>
+               <a href="{% url 'training_type' %}" class="btn btn-sm mt-3 text-white float-end"
+                  style="background-color: #014be1;">View More</a>
+   
+   
+            </div>
+         </div>
+      </div>
+
+
+      <!-- rank -->
+      <div class="col col-md-4 mt-2">
+         <div class="card shadow">
+            <div class="card-body">
+               <h4 class="card-title">အဆင့်</h4>
+               <p class="card-description"><a href="{% url 'rank' %}">View More</a><code>.table</code>
+               </p>
+               <table class="table table-hover">
+                  <thead>
+                     <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+   
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {% for rank in ranks %}
+                     <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ rank.name }}</td>
+   
+                     </tr>
+                     {% endfor %}
+                  </tbody>
+               </table>
+               <a href="{% url 'rank' %}" class="btn btn-sm mt-3 text-white float-end"
+                  style="background-color: #014be1;">View More</a>
+   
+   
+            </div>
+         </div>
+      </div>
+
+     
+ 
+
+
+      <!-- religion -->
+      <div class="col col-md-4 mt-2">
+         <div class="card shadow">
+            <div class="card-body">
+               <h4 class="card-title">ကိုးကွယ်ရေ ဘာသာ</h4>
+               <p class="card-description"><a href="{% url 'religionpage' %}">View More</a> <code>.table</code>
+               </p>
+               <table class="table table-hover">
+                  <thead>
+                     <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+   
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {% for religion in religions %}
+                     <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ religion.name }}</td>
+   
+                     </tr>
+                     {% endfor %}
+                  </tbody>
+               </table>
+               <a href="{% url 'religionpage' %}" class="btn btn-sm mt-3 text-white float-end"
+                  style="background-color: #014be1;">View More</a>
+   
+   
+            </div>
+         </div>
+      </div>
+
+
+      <!-- training ground -->
+      <div class="col col-md-4 mt-2">
+         <div class="card shadow">
+            <div class="card-body">
+               <h4 class="card-title">သင်တန်း နိန်ရာ</h4>
+               <p class="card-description"><a href="{% url 'training_ground' %}">View More</a><code>.table</code>
+               </p>
+               <table class="table table-hover">
+                  <thead>
+                     <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+   
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {% for t_ground in t_grounds %}
+                     <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ t_ground.name }}</td>
+   
+                     </tr>
+                     {% endfor %}
+                  </tbody>
+               </table>
+               <a href="{% url 'training_ground' %}" class="btn btn-sm mt-3 text-white float-end"
+                  style="background-color: #014be1;">View More</a>
+   
+   
+            </div>
+         </div>
+      </div>
+
+
+      <!-- blood -->
+      <div class="col col-md-4 mt-2">
+         <div class="card shadow">
+            <div class="card-body">
+               <h4 class="card-title">သွီး အမျိုးအစား</h4>
+               <table class="table table-hover">
+                  <thead>
+                     <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+   
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {% for blood in bloods %}
+                     <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ blood.name }}</td>
+   
+                     </tr>
+                     {% endfor %}
+                  </tbody>
+               </table>
+   
+               <a href="{% url 'blood' %}" class="btn btn-sm mt-3 text-white float-end"
+                  style="background-color: #014be1;">View More</a>
+   
+            </div>
+         </div>
+   
+      </div>
+
+
+   </div>
+   <!-- table -->
+   
+   
+   
+   
+   {% endblock %}
+
+
+
+
+

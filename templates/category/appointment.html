@@ -1,0 +1,129 @@
+{% extends 'layout/master.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="row">
+     <!-- table -->
+     <div class="col col-md-8">
+          <div class="card shadow">
+            <div class="card-header text-dark alert alert-info">
+               <h4 class="  text-center fs-4 fw-bold ">တာဝန်</h4>
+            </div>
+            
+            
+            <div class="card-body">
+                <table class="table">
+                   <thead>
+                      <tr>
+                         <th>စဥ်</th>
+                         <th>တာဝန်</th>
+                         <th>လုပ်ဆောင်ချက်များ</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                      {% for appointment in appointments %}
+                      <tr>
+                         <td>{{ forloop.counter }}</td>
+                         <td>{{ appointment.name }}</td>
+                         <td>
+                            <a href="{% url 'appointment_edit' appointment.id %}" class="btn btn-sm text-white" style="background-color: #014be1;">ပြုပြင်ရန်</a>
+                            <a href="{% url 'appointment_delete' appointment.id %}" class="btn btn-sm text-white" style="background-color: #e10019;">ဖျက်သိမ်းရန်</a>
+                            
+                         </td>
+                      </tr>
+                      {% endfor %}
+                   </tbody>
+                </table>
+    
+    
+             </div>
+          </div>
+     </div>
+
+     
+<!-- for create training type-->
+{% if add == 'add_appointment' %}
+<div class="col col-md-4">
+     <div class="card shadow">
+         <div class="card-header text-dark alert alert-info">
+            <p class="fs-5  text-center  fw-bold"> တာဝန် ကို ပေါင်းထည့်ပါ</p>
+         </div>
+        <div class="card-body">
+           <form action="" method="POST">
+              {% csrf_token %}
+              {{form.name|as_crispy_field}}
+              
+              
+                 <button type="submit" class="btn btn-sm text-white" style="background-color: #014be1;">သိမ်းဆည်းရန်</button>
+                 <button type="reset" class="btn btn-sm  text-white" style="background-color: #e10019;">မသိမ်းပါ</button>
+           </form>
+        </div>
+     </div>
+</div>
+
+<!-- edit type -->
+{% else %}
+<div class="col col-md-4">
+   <div class="card shadow">
+      <div class="card-header text-dark text-center alert alert-info" >
+      "{{ appointment.name }}" ကို ပြုပြင်ရန်
+      </div>
+      <div class="card-body">
+         <form action="" method="POST">
+            {% csrf_token %}
+            {{form.name|as_crispy_field }} 
+            
+            
+               <button type="submit" class="btn btn-sm text-white" style="background-color: #014be1;">ပြုပြင်ရန်</button>
+               <button type="reset" class="btn btn-sm text-white" onclick="history.back()" style="background-color: #e10019;">မပြုပြင်ပါ</button>
+         </form>
+      </div>
+   </div>
+</div>
+
+  
+
+
+{% endif %}
+
+<!-- paginations start -->
+{{ appointments.num_pages }}
+<nav aria-label="Page navigation">
+   {% if appointments.has_other_pages %}
+   <ul class="pagination    ">
+      {% if appointments.has_previous %}
+      <li class="page-item" aria-current="page">
+         <a class="page-link" href="?page={{ users.previous_page_number }}">&laquo;</a>
+      </li>
+      {% endif %}
+
+      {% for i in appointments.paginator.page_range %}
+      {% if appointments.paginator == i %}
+      <li class="page-item">
+         <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+         <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+
+
+
+      {% if appointments.has_next %}
+      <li class="page-item">
+         <a class="page-link" href="?page={{ appointments.next_page_number }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+         </a>
+      </li>
+      {% endif %}
+
+   </ul>
+   {% endif %}
+
+</nav>
+<!-- end paginations -->
+</div>
+{% endblock %}

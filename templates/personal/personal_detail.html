@@ -1,0 +1,300 @@
+{% extends 'layout/master.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+
+<div class="table">
+
+     <div class="row">
+          <div class="col col-sm-5 col-md-5 col-lg-5">
+               <table class="table table-hover table-bordered shadow">
+                    <h3 class="alert alert-info">"{{ personal.name}}" <span style="color: #014be1;">၏ကိုယ်ရီးအချက်အလက်ကြည့်ရန်</span> </h3>
+
+                    <thead class="table-light fs-5">
+
+                         <tr class="table">
+                              <th class="col-sm-2">စဥ်</th>
+                              <th class="col-sm-3">Column 2</th>
+                              <th class="col-sm-7">Column 3</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                         <tr class="table">
+                              <td scope="row">၁။</td>
+                              <td>နာမေ</td>
+                              <td>{{ personal.name }}</td>
+                         </tr>
+
+
+                         <tr class="table fs-4">
+                              <td scope="row">၂။</td>
+                              <td>အဆင့်</td>
+                              <td>{{ personal.rank }}</td>
+                         </tr>
+
+                         <tr class="table fs-4">
+                              <td scope="row">၃။</td>
+                              <td>တာဝန်</td>
+                              <td>{{ personal.appointment }}</td>
+                         </tr>
+
+
+
+                         <tr class="table">
+                              <td scope="row">၄။</td>
+                              <td>ကိုယ်ပိုင် နံပါတ်</td>
+                              <td>{{ personal.ser_number }}</td>
+
+                         </tr>
+                         <tr class="table">
+                              <td scope="row">၅။</td>
+                              <td>ဌာန</td>
+                              <td>{{ personal.department }}</td>
+
+                         </tr>
+                         <tr class="table">
+                              <td scope="row">၆။</td>
+                              <td>ဓါတ်ပုံ</td>
+                              <td>
+                                   <img src="{{ personal.image.url }}" alt="" />
+                              </td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၇။</td>
+                              <td>လိင်</td>
+                              <td>{{ personal.gender }}</td>
+
+                         </tr>
+                         <tr class="table">
+                              <td scope="row">၈။</td>
+                              <td>အသက်</td>
+                              <td>{{ personal.birthdayCount }}</td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၉။</td>
+                              <td>ကိုးကွယ်ရေ ဘာသာ</td>
+                              <td>{{ personal.religion }}</td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၁၀။</td>
+                              <td>လူမျိုး</td>
+                              <td>{{ personal.nation }}</td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၁၁။</td>
+                              <td>နိန်ရပ်လိပ်စာ</td>
+                              <td>{{ personal.address }}</td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၁၂။</td>
+                              <td>အဖ နာမေ</td>
+                              <td>{{ personal.father }}</td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၁၃။</td>
+                              <td>အမိ နာမေ</td>
+                              <td>{{ personal.mother }}</td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၁၄။</td>
+                              <td>အိမ်ထောင် ဟိ/မဟိ</td>
+                              <td>{{ personal.married }}</td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၁၅။</td>
+                              <td>သွီး အမျိုးအစား</td>
+                              <td>{{ personal.blood }}</td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၁၆။</td>
+                              <td>ကျန်းမာရီး</td>
+                              <td>{{ personal.health }}</td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၁၇။</td>
+                              <td>အရပ်</td>
+                              <td>{{ personal.height }}</td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၁၈။</td>
+                              <td>ပညာ အရည်အခြင်း</td>
+                              <td>{{ personal.education }}</td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၁၉။</td>
+                              <td>တပ်ဝင် ရက်စွဲ</td>
+                              <td>{{ personal.join_date }}</td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၂၀။</td>
+                              <td>သင်တန်း အပါတ်စဥ်</td>
+                              <td>{{ personal.batch_no }}</td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၂၁။</td>
+                              <td>သင်တန်း နိန်ရာ</td>
+                              <td>{{ personal.trained_place }}</td>
+                         </tr>
+
+
+
+                         <tr class="table">
+                              <td scope="row">၂၂။</td>
+                              <td>တက်ရောက်ဖူးရေ သင်တန်းများ</td>
+                              <td>
+                                   {% for trained_type in personal.trained_type.all %}
+                                   {{ trained_type }}၊
+                                   {% endfor %}
+                              </td>
+                         </tr>
+
+                         <tr class="table">
+                              <td scope="row">၂၃။</td>
+                              <td>သင်တန်းကြာချိန်</td>
+                              <td>{{ personal.long_time }}</td>
+                         </tr>
+
+
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+               </table>
+          </div>
+
+
+          <div class="col col-sm-7 col-md-7 col-lg-7">
+               <!-- crime table -->
+               <table class="table table-hover table-bordered shadow ">
+                    <h3>ပြစ်မှု ဇယား</h3>
+                    <thead>
+                         <tr>
+                              <th>စဥ်</th>
+                              <th>ပြစ်မှု အမျိုးအစား</th>
+                              <th>ပြစ်ဒဏ် အမျိုးအစား</th>
+                              <th>ပြစ်ဒဏ် စရေနိန့် </th>
+                              <th> ပြစ်ဒဏ် ဆုံးရေနိန့်</th>
+                              <th>အထက်လူကြီး</th>
+                              <th>လုပ်ဆောင်ချက်များ</th>
+                         </tr>
+                    </thead>
+
+                    <tbody>
+                         {% for crime in crime %}
+                         <tr>
+                              <td>{{ forloop.counter}}</td>
+                              <td>{{ crime.crime_type  }}</td>
+                              <td>{{ crime.punished}}</td>
+                              <td>{{ crime.start}}</td>
+                              <td>{{ crime.end}}</td>
+                              <td>{{ crime.commander}}</td>
+                              <td>
+                                   <a href="{% url 'crime_edit' crime.id%}" class="btn btn-sm btn-info"><i
+                                             class="mdi mdi-grease-pencil"></i></a>
+
+                                   <a href="#" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i></a>
+                              </td>
+                         </tr>
+                         {% endfor%}
+                    </tbody>
+               </table>
+               <!-- end crime table -->
+
+               <!-- serviced places -->
+               <table class="table table-hover table-bordered shadow">
+
+                    <h3>တာဝန် ထမ်းဆောင်မှု မှတ်တမ်း</h3>
+                    <thead>
+                         <tr>
+                              <th>စဥ်</th>
+                              <th>တာဝန် ထမ်းဆောင်ခရေ ဌာန</th>
+                              <th>စရေ နိန့်</th>
+                              <th>ဆုံးရေ နိန့်</th>
+                              <th>ကြာချိန်</th>
+                              <th>လုပ်ဆောင်ချက်များ</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                         <tr>
+                              <tbody>
+                                   {% for serviced in serviced %}
+                                   <tr>
+                                        <td>{{ forloop.counter}}</td>
+                                        <td>{{ serviced.serviced  }}</td>
+                                        <td>{{ serviced.start_date }}</td>
+                                        <td>{{ serviced.end_date}}</td>
+                                        <td>{{ serviced.long_time}}</td>
+                                        
+                                        <td>
+                                             <a href="{% url 'personal_serviced_edit' serviced.id %}" class="btn btn-sm btn-info"><i
+                                                       class="mdi mdi-grease-pencil"></i></a>
+          
+                                             <a href="#" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i></a>
+                                        </td>
+                                   </tr>
+                                   {% endfor%}
+                              </tbody>
+                         </tr>
+                    </tbody>
+               </table>
+               <!-- end serviced places -->
+
+
+          </div>
+          <!-- <div class="col col-md-3"></div> -->
+     </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

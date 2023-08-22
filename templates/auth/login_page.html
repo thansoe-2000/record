@@ -1,0 +1,68 @@
+
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body style="background-color: rgb(98, 112, 100);">
+     <div class="container">
+          <div class="login mt-5">
+               <div class="row">
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                         {% if page == 'login' %}
+                         <h1 class="text-danger text-center alert alert-info">Login page</h1>
+                         <form action="" method="post">
+                              {% csrf_token %}
+                              <div class="username mb-3">
+                                   <label for="" class="text-white">Username</label>
+                                   <input type="text" name="username" id="" class="form-control" placeholder="Enter username">
+                              </div>
+
+                              <div class="password mb-3">
+                                   <label for="" class="text-white">Password</label>
+                                   <input type="password" name="password" id="" class="form-control" placeholder="Enter password">
+                              </div>
+
+                              <button type="submit" class="btn btn-sm btn-success mt-3">Login</button>
+                              <a href="{% url 'register' %}" class="btn btn-sm btn-info mt-3">Register</a>
+                         </form>
+
+                         {% else %}
+                         <form action="" method="POST">
+                              {% csrf_token %}
+                              <h1 class="text-danger text-center alert alert-info">Register page</h1>
+                              {% for field in form %}
+                              <div class="username mb-3 text-white">
+                                   <label for="">{{ field.label }}</label>
+                                   {{ field }}
+                              </div>
+                              {% endfor %}
+                              <button type="submit" class="btn btn-sm btn-primary">Register</button>
+                              <a href="{% url 'login' %}" class="btn btn-sm btn-success">Login</a>
+                         </form>
+                         {% endif %}
+                         
+                    </div>
+                    <div class="col-lg-4"></div>
+               </div>
+          </div>
+     </div>
+</body>
+</html>
+
+
+
+
+
+
+{% endblock %}

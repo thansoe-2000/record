@@ -1,0 +1,92 @@
+{% extends 'layout/master.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+  <!-- table -->
+   <div class="col col-md-8">
+      <div class="card shadow">
+         <div class="text-dark alert alert-info">
+            <p class="fs-4 text-center fw-bold">တာဝန် ထမ်းဆောင်နိန်ရေ ဌာန</p>
+         </div>
+         
+         
+         <div class="card-body">
+            <table class="table">
+               <thead>
+                  <tr>
+                     <th>Id</th>
+                     <th>Name</th>
+                     <th>Actions</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {% for department in departments %}
+                  <tr>
+                     <td>{{ forloop.counter }}</td>
+                     <td>{{ department.name }}</td>
+                     <td>
+                        <a href="{% url 'department_edit' department.id  %}" class="btn btn-sm text-white" style="background-color: #014be1;">ပြုပြင်ရန်</a>
+                        <a href="{% url 'department_remove' department.id %}" class="btn btn-sm text-white" style="background-color: #e10019;"> <i class="mdi mdi-delete-forever "></i> ဖျက်သိမ်းရန်</a>
+                        
+                     </td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+
+
+         </div>
+      </div>
+   </div>
+   <!-- end table -->
+
+   <!-- create current department -->
+   {% if  page == "add_depart"%}
+   <div class="col col-md-4">
+      <div class="card shadow">
+         <div class="text-dark alert alert-info">
+
+            ဌာန အသစ်ပေါင်းထည့်ရန်
+         </div>
+         <div class="card-body">
+            <form action="" method="POST">
+               {% csrf_token %}
+               {{form.name|as_crispy_field}}
+               
+                  <button type="submit" class="btn btn-sm text-white" style="background-color: #014be1;">သိမ်းဆည်းရန်</button>
+                  <button type="reset" class="btn btn-sm text-white" style="background-color: #e10019;">မသိမ်းပါ</button>
+            </form>
+         </div>
+      </div>
+   </div>
+
+   <!-- change deparment -->
+   {% else %}
+   <div class="col col-md-4">
+      <div class="card shadow">
+         <div class="text-dark alert alert-info">
+
+            "{{ department.name }}" ကိုပြုပြင်ရန်
+         </div>
+         <div class="card-body">
+            <form action="" method="POST">
+               {% csrf_token %}
+               {{form.name|as_crispy_field}}
+               
+                  <button type="submit" class="btn btn-sm text-white" style="background-color: #014be1;">ပြုပြင်ရန်</button>
+                  <button type="reset" class="btn btn-sm text-white" onclick="history.back()" style="background-color: #e10019;">မပြုပြင်ပါ</button>
+            </form>
+         </div>
+      </div>
+   </div>
+
+   
+   {% endif %}
+   
+
+
+
+
+
+</div>
+{% endblock %}

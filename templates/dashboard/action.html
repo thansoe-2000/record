@@ -1,0 +1,335 @@
+{% extends 'layout/master.html' %}
+{% load crispy_forms_tags %} 
+{% block content %}
+
+<div class="student">
+  <!-- CREATE -->
+  {% if add == "add_student" %}
+  <div class="student_create">
+    <h3 class="alert alert-info text-center">Student create form</h3>
+    <form action="" method="POST" class="mt-5" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col col-sm-3">{{ form.name|as_crispy_field}}</div>
+
+        <div class="col col-sm-3">{{ form.age|as_crispy_field}}</div>
+
+        <div class="col col-sm-3">{{ form.address|as_crispy_field}}</div>
+
+        <div class="col col-sm-3">{{ form.contact|as_crispy_field}}</div>
+
+        <div class="col col-sm-3">{{ form.current_class|as_crispy_field}}</div>
+
+        <div class="col col-sm-3">{{ form.major|as_crispy_field}}</div>
+
+        <div class="col col-sm-3">{{ form.image|as_crispy_field}}</div>
+      </div>
+
+      <button type="submit" class="btn btn-sm text-white" style="background-color: #0d3f17"> သိမ်းဆည်းရန်</button>
+      <button type="reset" class="btn btn-sm text-white" style="background-color: #e10019" onclick="history.back()">မသိမ်းပါ</button>
+      <a href="{% url 'father_create' %}" class="btn btn-sm text-white" style="background-color: #014be1">မိသားစု ကိုယ်ရီးကို ပေါင်းထည့်ရန်</a>
+      
+    </form>
+  </div>
+  <!-- CREATE END -->
+
+  <!-- student change -->
+  {% elif change == "student_change" %}
+
+  <div class="student_change">
+    <form action="" method="POST" class="mt-5" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row">
+    <h3 class="alert alert-info text-center">"{{ student.name }}"<span style="color: #014be1"> ၏ကိုယ်ရီးအချက်အလက်ကို ပြုပြင်ရန်</span></h3>
+
+        <div class="col col-sm-3">{{ form.name|as_crispy_field}}</div>
+
+        <div class="col col-sm-3">{{ form.age|as_crispy_field}}</div>
+
+        <div class="col col-sm-3">{{ form.address|as_crispy_field}}</div>
+
+        <div class="col col-sm-3">{{ form.contact|as_crispy_field}}</div>
+
+        <div class="col col-sm-3">{{ form.current_class|as_crispy_field}}</div>
+
+        <div class="col col-sm-3">{{ form.major|as_crispy_field}}</div>
+
+        <div class="col col-sm-3">{{ form.image|as_crispy_field}}</div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-sm text-white"
+        style="background-color: #014be1"
+      >
+        ပြုပြင်မည်
+      </button>
+      <button
+        type="reset"
+        class="btn btn-sm text-white"
+        style="background-color: #e10019"
+        onclick="history.back()"
+      >
+        မပြုပြင်ပါ
+      </button>
+    </form>
+  </div>
+  <!-- student change -->
+
+  <!-- detail student -->
+  {% else %}
+  <div class="detail_student">
+    <div class="row">
+      <div class="col col-sm-6">
+        <table class="table table-hover table-bordered shadow mt-5">
+          <h3 class="alert alert-info text-center">
+            "{{ student.name}}"
+            <span style="color: #014be1">၏ကိုယ်ရီးအချက်အလက်ကြည့်ရန်</span>
+          </h3>
+
+          <thead class="table-light fs-5">
+            <tr class="table">
+              <th class="col-sm-2">စဥ်</th>
+              <th class="col-sm-3">Column 2</th>
+              <th class="col-sm-7">Column 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table">
+              <td scope="row">၁။</td>
+              <td>နာမေ</td>
+              <td>{{ student.name }}</td>
+            </tr>
+
+            <tr class="table">
+               <td scope="row">၂။</td>
+               <td>အသက်</td>
+               <td>{{ student.ageCount }}</td>
+             </tr>
+
+             <tr class="table">
+               <td scope="row">၃။</td>
+               <td>နိန်ရပ်လိပ်စာ</td>
+               <td>{{ student.address }}</td>
+             </tr>
+
+             <tr class="table">
+               <td scope="row">၄။</td>
+               <td>ဆက်သွယ်ရန် လိပ်စာ</td>
+               <td>{{ student.contact }}</td>
+             </tr>
+
+             <tr class="table">
+               <td scope="row">၅။</td>
+               <td>လက်ဟိ အတန်း</td>
+               <td>{{ student.current_class }}</td>
+             </tr>
+
+             <tr class="table">
+               <td scope="row">၆။</td>
+               <td>အထူးပြု ဘာသာရပ်</td>
+               <td>{{ student.major }}</td>
+             </tr>
+
+             <tr class="table">
+               <td scope="row">၇။</td>
+               <td>ဓါတ်ပုံ</td>
+               <td>
+                    <img src="{{ student.image.url }}">
+               </td>
+             </tr>
+
+           
+             
+          </tbody>
+          <tfoot></tfoot>
+        </table>
+
+
+        
+        <!-- father detail -->
+        <div class="father mt-5">
+          <table class="table table-hover table-bordered shadow">
+            <h3 class="alert alert-info text-center">
+              "{{ student.name}}"
+              <span style="color: #014be1"> အဖ  "{{ student.f_name}}" ၏ကိုယ်ရီးအချက်အလက်ကြည့်ရန်</span>
+            </h3>
+  
+            <thead class="table-light fs-5">
+              <tr class="table">
+                <th class="col-sm-2">စဥ်</th>
+                <th class="col-sm-3">Column 2</th>
+                <th class="col-sm-7">Column 3</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table">
+                <td scope="row">၁။</td>
+                <td>နာမေ</td>
+                <td>{{ student.f_name }}</td>
+              </tr>
+  
+              <tr class="table">
+                 <td scope="row">၂။</td>
+                 <td>အသက်</td>
+                 <td>{{ student.f_ageCount }}</td>
+               </tr>
+
+               <tr class="table">
+                <td scope="row">၃။</td>
+                <td>အလုပ် အကိုင်</td>
+                <td>{{ student.f_careers }}</td>
+              </tr>
+
+               <tr class="table">
+                 <td scope="row">၄။</td>
+                 <td>နိန်ရပ်လိပ်စာ</td>
+                 <td>{{ student.f_address }}</td>
+               </tr>
+  
+               <tr class="table">
+                 <td scope="row">၅။</td>
+                 <td>ဆက်သွယ်ရန် လိပ်စာ</td>
+                 <td>{{ student.f_contact }}</td>
+               </tr>
+  
+             
+  
+             
+  
+               <tr class="table">
+                 <td scope="row">၆။</td>
+                 <td>ဓါတ်ပုံ</td>
+                 <td>
+                      <img src="{{ student.f_image.url }}">
+                 </td>
+               </tr>
+  
+             
+               
+            </tbody>
+            <tfoot></tfoot>
+          </table>
+        </div>
+        <!-- end father detail -->
+        
+        <!-- mother detail -->
+        <div class="father mt-5">
+          <table class="table table-hover table-bordered shadow">
+            <h3 class="alert alert-info text-center">
+              "{{ student.name}}"
+              <span style="color: #014be1"> အမိ "{{ student.m_name}}" ၏ကိုယ်ရီးအချက်အလက်ကြည့်ရန်</span>
+            </h3>
+  
+            <thead class="table-light fs-5">
+              <tr class="table">
+                <th class="col-sm-2">စဥ်</th>
+                <th class="col-sm-3">Column 2</th>
+                <th class="col-sm-7">Column 3</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table">
+                <td scope="row">၁။</td>
+                <td>နာမေ</td>
+                <td>{{ student.m_name }}</td>
+              </tr>
+  
+              <tr class="table">
+                 <td scope="row">၂။</td>
+                 <td>အသက်</td>
+                 <td>{{ student.m_ageCount }}</td>
+               </tr>
+
+               <tr class="table">
+                <td scope="row">၃။</td>
+                <td>အလုပ် အကိုင်</td>
+                <td>{{ student.m_careers }}</td>
+              </tr>
+
+               <tr class="table">
+                 <td scope="row">၄။</td>
+                 <td>နိန်ရပ်လိပ်စာ</td>
+                 <td>{{ student.m_address }}</td>
+               </tr>
+  
+               <tr class="table">
+                 <td scope="row">၅။</td>
+                 <td>ဆက်သွယ်ရန် လိပ်စာ</td>
+                 <td>{{ student.m_contact }}</td>
+               </tr>
+  
+               <tr class="table">
+                 <td scope="row">၆။</td>
+                 <td>ဓါတ်ပုံ</td>
+                 <td>
+                      <img src="{{ student.m_image.url }}">
+                 </td>
+               </tr>
+             
+              </tbody>
+              <tfoot></tfoot>
+            </table>
+          </div>
+          <!-- end mother detail -->
+  
+             
+      </div>
+
+      <div class="col col-sm-4">
+        <!-- student -->
+       <div class="student card " style="width: 100%; height: 450px;">
+
+        <div class="card-header alert alert-info">
+          <h2>" {{ student.name}}" ၏ ဓါတ်ပုံ</h2>
+        </div>
+        <div class="card-body">
+          <img src="{{ student.image.url }}" alt="" height="300px" width="100%" style="object-fit:cover;">
+        </div>
+
+       </div>
+       <!-- student -->
+
+        <!-- father -->
+        <div class="student card mt-5" style="width: 100%; height: 450px;">
+
+          <div class="card-header alert alert-info">
+            <h2>" {{ student.f_name}}" ၏ ဓါတ်ပုံ</h2>
+          </div>
+          <div class="card-body">
+            <img src="{{ student.f_image.url }}" alt="" height="300px" width="100%" style="object-fit:cover;">
+          </div>
+  
+         </div>
+         <!-- father -->
+
+          <!-- mother -->
+       <div class="student card mt-5" style="width: 100%; height: 450px;">
+
+        <div class="card-header alert alert-info">
+          <h2>" {{ student.m_name}}" ၏ ဓါတ်ပုံ</h2>
+        </div>
+        <div class="card-body">
+          <img src="{{ student.m_image.url }}" alt="" height="300px" width="100%" style="object-fit:cover;">
+        </div>
+
+       </div>
+       <!-- mother -->
+
+      </div>
+    </div>
+
+     
+
+
+  </div>
+    <!-- detail student -->
+    {% endif %}
+</div>
+  
+  {% endblock %}
+  
+  
+             
+               
+
